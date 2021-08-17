@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>유저 회원가입 페이지</h1>
+<form th:action="@{/user/register.do}" method="post">
+    <!--
+    _USER_NAME		VARCHAR(100),
+	_USER_NICKNAME	VARCHAR(30),
+	_USER_ID		VARCHAR(100),
+	_USER_PWD		VARCHAR(100),
+	_USER_EMAIL		VARCHAR(300)
+    -->
+    <input id="user_name" name="user_name" placeholder="유저이름">
+    <input id="user_id" name="user_id" placeholder="유저아이디">
+    <input id="user_nickname" name="user_nickname" placeholder="유저닉네임">
+    <input id="user_pwd" name="user_pwd" placeholder="유저패스워드">
+    <input id="user_email" name="user_email" placeholder="유저이메일">
+    <button type="submit">가입</button>
+</form>
+
+</body>
+</html>

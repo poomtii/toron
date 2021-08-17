@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<body layout:fragment="content">
+<!-- cdn vs local
+     cdn : 외부서버에서 리소스 파일을 불러옴
+     local : 내 내부경로에서 리소스 파일을 불러옴-->
+<script th:src="@{/ckeditor/ckeditor.js}"></script>
+
+    <!--비동기로 통신을 해야할 상황이 있음,
+        Ajax를 사용 해야할 경우가 있다.
+        Ajax를 사용하고 json을 받기 위해서 RestController를 사용 해야함-->
+    <!--모든 리소를 페이지에서 사용 하기 위해선 명시가 되어야 함.
+        명시작업이 익숙하지 않을 경우, 원하지 않는 결과가 발생하기 마련임.
+        이런 경우, 명시작업이 빠져있음에도 이를 인지하지 못하고, 다른 부분에서 오류를 검출하려고 함.
+        결과적으로 작업속도가 매우 저하되는 좆같은 경우.-->
+    <form action="/board/bbsWriteAction" method="post">
+        <div>
+            <label>제목</label>
+            <input id="board_title" name="board_title" placeholder="제목을 입력하세요">
+        </div>
+        <div>
+            <textarea id="board_contents" name="board_contents" class="form-control" cols="30" rows="8"></textarea>
+            <!--ck에디터가 트림 많다.
+                cdn으로 불러온 친구는 무슨 옵션이 달렸는지 모르겠음
+                filebrowserUrl 이걸 쓰기 위해서 ckeditor-add를 보내 준건데
+                cdn으론 안될 수도 있음.
+                지금 확인해 볼거임-->
+            <!-- 의문점 1. cdn으로 할땐 script에 걸린 replace 부분이 잘 작동하다가 왜 로컬로 걸면 안됨
+
+                 의문점 2. 왜? 이미지 추가 화면이 별도 설정 없이 나옴? 난 스크립트에 함수 안걸음.
+                 파생되는 문제점 1. 스크립트에 파일업로드 브라우저를 사용하고 여기서 밸류url을 넘겨주는데 그게 안됨.-->
+            <script>
+                CKEDITOR.replace('board_contents' , {
+                    filebrowserUploadUrl : 'upload' ,
+                    height: 500
+                });
+            </script>
+        </div>
+        <div>
+            <a name="board_image" th:value="이미지테스트"></a>
+        </div>
+        <div>
+            <input type="hidden" name="user_nickname" th:value="${session.UserData.getUser_nickname()}">
+        </div>
+        <div>
+            <!--카테고리가 구현 되면 먼저 바꿀 것-->
+            <!--1. 카테고리 테이블에 데이터 있다면 Select로 데이틀 뽑아 와야함
+                2. 1에서 추출한 데이터는 자바에서 List에 담아야  함
+                3. List에 담긴 데이터는 mvc에서 가공 되어야 하는데
+                4. Model And View 나 Model 사용 해서 setAttribute로 List에 별칭을 붙임
+                5. List 자체는 html 사용 할 수 없고, 별칭으로 사용 할 수 있음
+                6. AttributeName으로 th:each로 List를 쪼개서 사용할 수 있음-->
+            <select>
+                <option value="n">카테고리를 선택하세요.</option>
+                <th:block th:each="menu,index : ${mnList}">
+                    <option th:value="${menu.category_code}" th:text="${menu.category_name}">메뉴</option>
+                </th:block>
+
+            </select>
+        </div>
+        <!--헤르프에 걸린 값이 작동이 안됨, add_board가 나옴
+            왜 그런것이냐, form 태그 안에서 액션이 발생하면 저게 나옴.
+            그러면은 콘츄럴러에서 경로를 정하고 리턴 해주면 될거같음
+            add_borad를 컨트롤러에서 찾을거다. 근데 컨트롤러에선 add_borad라는 밸류를 가진 컨트롤러가 없음
+            따라서 게시글 등록 로직이 실행되지 않은거임.-->
+        <!--<button type="submit" id="submit_btn" th:href="@{/board/list.go}">작성</button>-->
+        <button type="submit" id="submit_btn" value="submit" class="button" th:href="@{/board/list.go}">작성</button>
+    </form>
+</body>
+</html>

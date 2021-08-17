@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: Head">
+
+</head>
+<body>
+    <!--name 과 id의 차이 (경량화 버전)
+    name = mybatis 에서 name 으로 찾는다
+    id = 스크립트에선 id로 찾는다.
+    그러므로 id 값과 name 은 공존 할 수 있음. -->
+
+    <!-- form태그에서 메소드를 지정하지 않으면, 기본이 GET임. 지금 메소드 지정이 없어서 get으로 보내고 있던거임-->
+    <!--1. (불확실) RequestMapping에서도 메소드 지정하지 않으면 GET으로 받는다.
+        2. (불확실) RequestMapping에서 메소드를 지정하지 않아도 자동으로 알아 듣는다.
+        3. RequestMapping이 편하긴 하지만 그냥 GetMapping이랑 PostMapping을 쓰는게 더 좋다. -->
+
+    <form th:action="@{/user/login.do}" method="post">
+        <input class="input-group-text" name="user_id" type="text" placeholder="id를 입력하세요"/>
+        <input class="input-group-text" name="user_pwd" type="password" placeholder="pw를 입력하세요"/>
+        <button id="btn_login" class="btn btn-primary" type="submit">로그인</button>
+    </form>
+</body>
+</html>

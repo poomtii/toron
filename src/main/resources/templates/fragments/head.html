@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="Head">
+    <title>haed sir</title>
+    <head th:fragment="Head">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Small Business - Start Bootstrap Template</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="../../../../../../Downloads/startbootstrap-small-business-gh-pages/assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    </head>
+</head>
+<!-- 예를 들어 로그인과 메인 컨텐츠가 사용하는 resources가 다를 경우가 반드시 있을 것
+    1번 Head파일을 두 개를 두어서 로그인과 메인컨텐츠가 사용하는 헤드를 따로 관리 하던가
+    2번 하나의 헤드파일에 헤드를 두개 두고 각 태그에 다른 별칭을 부여하여 하나의 파일로 관리 하는 것
+    resources 파일들은 간혹가다 충돌하는 경우가 있음 무지성으로 필요한것들을 추가하다보면 충돌이 일어남
+    단순 login 페이지서 필요 없는 리소스를 가지고 있는것은 비효율적이므로 불러오지 않도록 헤드를 따로 둔다 -->
+</html>

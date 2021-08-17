@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/default}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<style>
+    .fakeimg {
+        height: 200px;
+        background: #aaa;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#writeBtn").click(function(){
+            location.href ="write";
+        })
+        $.ajax({url: "boardList", success: function(result){
+                var html = "";
+                result.forEach(function(item){
+                    html+= "<tr> <td><a href = 'view?idx=" + item.idx + "'>" + item.title + "</a>"
+                })
+                $("#listArea").append(html)
+                $('#example').DataTable();
+            }});
+        $("#deleteBtn").click(function(){
+            location.href ="write";
+        })
+    } );
+
+</script>
+
+<body layout:fragment="content">
+
+
+    <div class="container">
+        <table class="table">
+            <thead class="thead-light">
+            <tr class="text-center">
+                <th scope="col">#</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+                <!-- th:each="view별칭 : ${attributename}"
+                     th:text="${view별칭.뿌려줄 데이터}"-->
+                <tr class="text-center" th:each="list : ${board_list}">
+                    <th scope="row">
+                        <span th:text="${list.board_no}"></span>
+                    </th>
+                    <td>
+                        <a th:href="@{'/board/info?no=' + ${list.board_code}}">
+                            <span th:text="${list.board_title}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <span th:text="${list.user_nickname}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${list.create_date}"></span>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-auto mr-auto"></div>
+            <!--세션여부 판단하여 버튼 분기출력 -->
+            <th:block th:if="${!session.isEmpty()}">
+                <div class="col-auto">
+                    <a class="btn btn-primary" th:href="@{/board/writeFrom}" role="button">글쓰기</a>
+                </div>
+            </th:block>
+            <th:block th:if="${session.isEmpty()}">
+                <div class="col-auto">
+                    <a class="btn btn-primary" th:href="@{/user/login.go}" role="button">로그인</a>
+                </div>
+            </th:block>
+
+        </div>
+    </div>
+
+</body>
+</html>

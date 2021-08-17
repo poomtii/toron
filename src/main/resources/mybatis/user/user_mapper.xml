@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.toron.mapper.user.UserMapper">
+    <!--id , 파라미터 이 두가지는 mvc에서 대소문자 확실하게 맞춰주는게 좋다.
+     vo와 인자값이 대소자가 다르면 에러가 남 -->
+    <select id="login" parameterType="com.example.toron.mvc.user.UserVO" resultType="com.example.toron.mvc.user.UserVO">
+        CALL SYS_LOGIN(#{user_id} , #{user_pwd});
+    </select>
+
+    <insert id="user_join" parameterType="com.example.toron.mvc.user.UserVO">
+        CALL SYS_JOIN(#{user_name} ,#{user_nickname}, #{user_id},#{user_pwd},#{user_email});
+    </insert>
+
+    <update id="user_info" parameterType="com.example.toron.mvc.user.UserVO">
+
+        CALL SYS_USER
+    </update>
+
+</mapper>

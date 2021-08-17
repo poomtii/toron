@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.toron.mapper.board.BoardMapper">
+    <!--id , 파라미터 이 두가지는 mvc에서 대소문자 확실하게 맞춰주는게 좋다.
+     vo와 인자값이 대소자가 다르면 에러가 남 -->
+    <insert id="write" parameterType="com.example.toron.mvc.board.BoardVO">
+        CALL SYS_BOARD(#{board_title}, #{board_contents}, #{board_image}, #{user_nickname}, #{category_code},
+            #{subcategory_code});
+    </insert>
+
+    <select id="List" resultType="com.example.toron.mvc.board.BoardVO">
+        SELECT
+        *
+        FROM SYS_BOARD;
+    </select>
+
+    <select id="getMenu" resultType="com.example.toron.mvc.board.MenuVO">
+        SELECT
+            *
+        FROM SYS_CATEGORY;
+    </select>
+
+    <select id="getInfoData" resultType="com.example.toron.mvc.board.BoardVO">
+        SELECT * FROM SYS_BOARD WHERE board_code = #{boardNo};
+    </select>
+
+    <select id="boardCount" resultType="com.example.toron.mvc.board.BoardVO">
+        SELECT count(board_no) AS cnt FROM SYS_BOARD;
+    </select>
+</mapper>
+
+        <!--
+        _board_title		VARCHAR(100),
+	_board_contents		VARCHAR(10000),
+	_board_image		VARCHAR(10000),
+	_user_nickname		VARCHAR(100),
+	_category_code		VARCHAR(100),
+	_subcategory_code	VARCHAR(100)-->
