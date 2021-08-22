@@ -19,4 +19,6 @@ public interface BoardMapper {
     List<MenuVO> getMenu();
 
     BoardVO getInfoData(String boardNo);
+
+    List<MenuVO> getCategoryName();
 }

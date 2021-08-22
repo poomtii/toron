@@ -37,4 +37,6 @@ public class BoardService {
     public BoardVO bbsInfoData(String boardNo) {
         return bMap.getInfoData(boardNo);
     }
+
+    public List<MenuVO> getCategoryName(){ return bMap.getCategoryName(); }
 }

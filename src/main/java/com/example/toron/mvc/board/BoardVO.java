@@ -14,7 +14,5 @@ public class BoardVO {
     private String update_date;
     private String coment_count;
     private String category_code;
-
-
-
+    private String category_name;
 }

@@ -29,6 +29,12 @@
     <select id="boardCount" resultType="com.example.toron.mvc.board.BoardVO">
         SELECT count(board_no) AS cnt FROM SYS_BOARD;
     </select>
+
+    <select id="getCategoryName" resultType="com.example.toron.mvc.board.MenuVO">
+        SELECT
+            category_name
+        FROM SYS_CATEGORY;
+    </select>
 </mapper>
 
         <!--
