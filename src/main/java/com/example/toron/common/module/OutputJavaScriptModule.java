@@ -20,7 +20,7 @@ public class OutputJavaScriptModule {
                 out.println(makeContentMsg(msg.getSuccessRegister(),msg.getLoginLoc()));
                 out.flush();
                 break;
-            case "writeDone" :
+            case "bbsWriteAction" :
                 out.println(makeContentMsg(msg.getWriteDone(),msg.getListLoc()));
                 out.flush();
                 break;

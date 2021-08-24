@@ -7,7 +7,7 @@
      vo와 인자값이 대소자가 다르면 에러가 남 -->
     <insert id="write" parameterType="com.example.toron.mvc.board.BoardVO">
         CALL SYS_BOARD(#{board_title}, #{board_contents}, #{board_image}, #{user_nickname}, #{category_code},
-            #{subcategory_code});
+            #{category_name});
     </insert>
 
     <select id="List" resultType="com.example.toron.mvc.board.BoardVO">
