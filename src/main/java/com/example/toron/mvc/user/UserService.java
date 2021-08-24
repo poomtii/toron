@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -49,7 +50,7 @@ public class UserService {
         }*/
     }
 
-    public void registerAction(UserVO vo , HttpServletResponse res) throws IOException {
+    public void registerAction(@Valid UserVO vo , HttpServletResponse res) throws IOException {
         int result = uMap.user_join(vo);
         if(result == 1) {
             oJm.outPrintScript("registerAction",res);

@@ -5,10 +5,9 @@
 <mapper namespace="com.example.toron.mapper.board.BoardMapper">
     <!--id , 파라미터 이 두가지는 mvc에서 대소문자 확실하게 맞춰주는게 좋다.
      vo와 인자값이 대소자가 다르면 에러가 남 -->
-    <insert id="write" parameterType="com.example.toron.mvc.board.BoardVO">
-        CALL SYS_BOARD(#{board_title}, #{board_contents}, #{board_image}, #{user_nickname}, #{category_code},
-            #{category_name});
-    </insert>
+    <select id="write" resultType="integer" parameterType="com.example.toron.mvc.board.BoardVO">
+        CALL SYS_BOARD(#{board_title}, #{board_contents}, #{board_image}, #{user_nickname}, #{category_code});
+    </select>
 
     <select id="List" resultType="com.example.toron.mvc.board.BoardVO">
         SELECT

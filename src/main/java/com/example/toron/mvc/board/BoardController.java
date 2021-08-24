@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -55,11 +56,11 @@ public class BoardController {
     }
 
     @PostMapping(value = "/bbsWriteAction")
-    public void bbsWriteAction(BoardVO Bvo, HttpServletResponse res) throws IOException {
+    public void bbsWriteAction(@Valid BoardVO Bvo, HttpServletResponse res) throws IOException {
         Integer result = bSvc.write_board(Bvo);
 
         if(result == 1){
-            oJm.outPrintScript("writeDone", res);
+            oJm.outPrintScript("bbsWriteAction", res);
         }else{
             oJm.outPrintScript("error", res);
 
