@@ -56,7 +56,7 @@ public class BoardController {
     }
 
     @PostMapping(value = "/bbsWriteAction")
-    public void bbsWriteAction(@Valid BoardVO Bvo, HttpServletResponse res) throws IOException {
+    public void bbsWriteAction(BoardVO Bvo, HttpServletResponse res) throws IOException {
         Integer result = bSvc.write_board(Bvo);
 
         if(result == 1){

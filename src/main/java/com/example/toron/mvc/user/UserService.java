@@ -6,12 +6,12 @@ import com.example.toron.mapper.user.UserMapper;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @Service
 @Log
@@ -50,12 +50,7 @@ public class UserService {
         }*/
     }
 
-    public void registerAction(@Valid UserVO vo , HttpServletResponse res) throws IOException {
-        int result = uMap.user_join(vo);
-        if(result == 1) {
-            oJm.outPrintScript("registerAction",res);
-        }else{
-            oJm.outPrintScript("error",res);
-        }
-    }
+    public Integer registerAction(@Valid @ModelAttribute UserVO userVO) throws IOException {
+        return uMap.user_join(userVO); }
+
 }

@@ -9,9 +9,9 @@
         CALL SYS_LOGIN(#{user_id} , #{user_pwd});
     </select>
 
-    <insert id="user_join" parameterType="com.example.toron.mvc.user.UserVO">
+    <select id="user_join" parameterType="com.example.toron.mvc.user.UserVO" resultType="Integer">
         CALL SYS_JOIN(#{user_name} ,#{user_nickname}, #{user_id},#{user_pwd},#{user_email});
-    </insert>
+    </select>
 
     <update id="user_info" parameterType="com.example.toron.mvc.user.UserVO">
 
