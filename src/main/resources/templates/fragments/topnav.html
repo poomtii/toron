@@ -4,12 +4,19 @@
 <th:block th:fragment="TopNav">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
+        <!--원래는 style 속성으로 정의를 했어야 했음
+            하지만 부트스트랩에 내장된 css에 이미 스타일이 정의가 되어있기 때문에 클래스만 블러와준거임.
+            부트스트랩의 사용 이점을 기억하자. 통일성과 편리함
+            만약에 부트스트랩이 없었다면 스타일을 하나하나 써줘야 함.-->
         <a class="navbar-brand" href="#!">Start Bootstrap</a>
         <th:block th:if="${session.isEmpty()}">
             <a th:href="@{/user/login.go}" th:text="로그인"></a>
         </th:block>
         <th:block th:if="${!session.isEmpty()}">
-            <a href="#" th:text="${session.UserData.user_nickname} + '님'"></a>
+            <a href="#" class="nav-link" th:text="${session.UserData.user_nickname} + '님'"></a>
+        </th:block>
+        <th:block th:if="${!session.isEmpty()}">
+            <a class="nav-link" th:href="@{/user/logout.do}" th:text="로그아웃"></a>
         </th:block>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

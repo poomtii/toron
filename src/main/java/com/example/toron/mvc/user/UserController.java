@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -50,5 +51,14 @@ public class UserController {
     @PostMapping(value = "/login.do")
     public String loginAction(UserVO vo, HttpServletResponse res, HttpServletRequest req) throws IOException {
         return uSvc.loginAction(vo,res,req);
+    }
+
+    @GetMapping(value = "/logout.do")
+    public String logoutAction(HttpSession session, HttpServletResponse res) throws IOException {
+        session.invalidate();
+        return "/index";
+/*
+        return oJm.outPrintScript("logout", res);
+*/
     }
 }

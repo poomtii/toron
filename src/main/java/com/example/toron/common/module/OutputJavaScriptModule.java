@@ -32,6 +32,11 @@ public class OutputJavaScriptModule {
                 out.println(makeContentMsg(msg.getError(),msg.getHistoryBack()));
                 out.flush();
                 break;
+
+            case "logout" :
+                out.println(makeContentMsg(msg.getIndexLoc(),msg.getSuccessLogout()));
+                out.flush();
+                break;
         }
     }
 
