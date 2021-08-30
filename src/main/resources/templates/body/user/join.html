@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<!--<%@ page import="com.example.toron.common.module.OutputJavaScriptModule" contentType=""%>-->
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 <body>
 <h1>유저 회원가입 페이지</h1>
 <form th:action="@{/user/register.do}" method="post" modelAttribute="userVO">
@@ -10,13 +13,62 @@
 	_USER_PWD		VARCHAR(100),
 	_USER_EMAIL		VARCHAR(300)
     -->
-    <input id="user_name" name="user_name" placeholder="유저이름">
-    <input id="user_nickname" name="user_nickname" placeholder="유저닉네임">
-    <input id="user_id" name="user_id" placeholder="유저아이디">
-    <input id="user_pwd" name="user_pwd" placeholder="유저패스워드">
-    <input id="user_email" name="user_email" placeholder="유저이메일">
+
+    <input id="user_name" name="user_name" placeholder="유저이름"><br/>
+
+    <input id="user_nickname" name="user_nickname" placeholder="유저닉네임"><br/>
+
+    <input id="user_id" name="user_id" placeholder="유저아이디"><br/>
+
+    <input id="user_pwd" type="password" name="user_pwd" placeholder="패스워드"><br/>
+    <div class="user_pwd regex"></div>
+    <font id="chkNotice1" size="2"></font><br/>
+
+    <input id="user_pwd_chk" type="password" name="user_pwd_chk" onchange="check_user_pwd()" placeholder="패스워드확인"><br/>
+    <font id="chkNotice2" size="2"></font><br/>
+
+    <!--<a><font size="2"/>  ****@****.com(co.kr, net, or.kr)양식에 맞출것. </a><br/>-->
+    <input id="user_email" name="user_email" placeholder="유저이메일"><br/>
+
     <button type="submit">가입</button>
+
+
 </form>
+
+
+<script>
+
+    $("#user_pwd").on("input",function(){
+        var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
+        var result = regex.exec($("#user_pwd").val())
+
+        if(result != null){
+            $(".pw.regex").html("");
+        }else{
+            $(".pw.regex").html("특수문자 포함 영어대소문자,숫자 8-16자리");
+            $(".pw.regex").css("color","red")
+        }
+    });
+
+    $(function check_user_pwd(){
+        $('#user_pwd').keyup(function(){
+            $('#chkNotice2').html('');
+        });
+
+        $('#user_pwd_chk2').keyup(function(){
+
+            if($('#user_pwd').val() != $('#user_pwd_chk').val()){
+                $('#chkNotice2').html('비밀번호 일치하지 않음<br><br>');
+                $('#chkNotice2').attr('color', '#f82a2aa3');
+            } else{
+                $('#chkNotice2').html('비밀번호 일치함<br><br>');
+                $('#chkNotice2').attr('color', '#199894b3');
+            }
+
+        });
+    });
+
+</script>
 
 </body>
 </html>

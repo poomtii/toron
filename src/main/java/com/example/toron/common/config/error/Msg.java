@@ -12,6 +12,7 @@ public class Msg {
     private String successLogout = "로그아웃이 되었습니다.";
     private String writeDone = "글 작성이 완료되었습니다.";
     private String error = "에러발생, 관리자에게 문의하세요.";
+    private String wrongPwdLength = "비밀번호는 8~16자리입니다.";
     private String listLoc = "/board/list.go";
     private String loginLoc = "/user/login.go";
     private String indexLoc = "/";

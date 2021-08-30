@@ -32,6 +32,9 @@ public class UserController {
     @GetMapping(value = "/register.go")
     public String goRegister() { return "body/user/join"; }
 
+    @GetMapping(value = "/nvregister.go")
+    public String gonaverRegister() { return "body/user/naverjoinform"; }
+
     @GetMapping(value = "/user_info.go")
     public String goUserInfo() { return "body/user/user_info"; }
 

@@ -37,6 +37,11 @@ public class OutputJavaScriptModule {
                 out.println(makeContentMsg(msg.getIndexLoc(),msg.getSuccessLogout()));
                 out.flush();
                 break;
+
+            case "wrongPwd" :
+                out.println(makeContentMsg(msg.getWrongPwdLength(),msg.getHistoryBack()));
+                out.flush();
+                break;
         }
     }
 

@@ -8,7 +8,7 @@
             하지만 부트스트랩에 내장된 css에 이미 스타일이 정의가 되어있기 때문에 클래스만 블러와준거임.
             부트스트랩의 사용 이점을 기억하자. 통일성과 편리함
             만약에 부트스트랩이 없었다면 스타일을 하나하나 써줘야 함.-->
-        <a class="navbar-brand" href="#!">Start Bootstrap</a>
+        <a class="navbar-brand" href="/">Start Bootstrap</a>
         <th:block th:if="${session.isEmpty()}">
             <a th:href="@{/user/login.go}" th:text="로그인"></a>
         </th:block>
@@ -25,6 +25,9 @@
                 <li class="nav-item"><a class="nav-link" th:href="@{/board/list.go}">게시판</a></li>
                 <th:block th:if="${session.isEmpty()}">
                     <li class="nav-item"><a class="nav-link" th:href="@{/user/register.go}">회원가입</a></li>
+                </th:block>
+                <th:block th:if="${session.isEmpty()}">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/user/nvregister.go}">네이버회원가입</a></li>
                 </th:block>
                 <th:block th:if="${!session.isEmpty()}">
                     <li class="nav-item"><a class="nav-link" th:href="@{/user/user_info.go}">회원정보 수정</a></li>
