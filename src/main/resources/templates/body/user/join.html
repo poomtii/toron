@@ -3,9 +3,37 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="~{layout/default}">
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+
+<script>
+    function pwd_keypress(){
+        var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~!@#$%^&*()+|=])[A-Za-z\d~!@#$%^&*()+|=]{8,16}$/;
+        var pwd = $("#user_pwd").val();
+        if(false == reg.test(pwd)){
+            document.write("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.");
+
+        }else{
+            document.write("사용가능한 비밀번호입니다.");
+        }
+    }
+
+    function equals(){
+        var user_pwd = document.getElementById("user_pwd").value;
+        var user_pwd_chk = document.getElementById("user_pwd_chk").value;
+
+        if(user_pwd_chk == "") {
+            document.getElementById("pwd_chk_text").innerHTML=""
+        }else if(user_pwd != user_pwd_chk){
+            document.getElementById("pwd_chk_text").innerHTML="비밀번호가 일치하지 않습니다."
+        }else{
+            document.getElementById("pwd_chk_text").innerHTML="비밀번호가 일치합니다."
+        }
+    }
+</script>
+
 
 <body layout:fragment="content">
+
 <h1>유저 회원가입 페이지</h1>
 <form th:action="@{/user/register.do}" method="post" modelAttribute="userVO">
     <!--
@@ -16,22 +44,20 @@
 	_USER_EMAIL		VARCHAR(300)
     -->
 
-    <input id="user_name" name="user_name" placeholder="유저이름"><br/>
+    <input id="user_name" name="user_name" placeholder="유저이름"><br/><br/>
 
-    <input id="user_nickname" name="user_nickname" placeholder="유저닉네임"><br/>
+    <input id="user_nickname" name="user_nickname" placeholder="유저닉네임"><br/><br/>
 
-    <input id="user_id" name="user_id" placeholder="유저아이디"><br/>
+    <input id="user_id" name="user_id" placeholder="유저아이디"><br/><br/>
 
-    <input id="user_pwd" type="password" name="user_pwd" placeholder="패스워드"><br/><!--
-    <div class="user_pwd_regex">
-        <font id="chkNotice1" size="2"></font>
-    </div><br/>-->
+    <input id="user_pwd" type="password" name="user_pwd" placeholder="패스워드" onkeypress="pwd_keypress(this)">
+    <font id="chk_reg" name="chk_reg" size="2" ></font><br/>
 
-    <input id="user_pwd_chk" type="password" name="user_pwd_chk" placeholder="패스워드확인">
-    <font id="chkNotice2" size="2"></font><br/>
+    <input id="user_pwd_chk" type="password" name="user_pwd_chk" onkeyup="equals(this)" placeholder="패스워드확인">
+    <td id="pwd_chk_text"><br/>
 
     <!--<a><font size="2"/>  ****@****.com(co.kr, net, or.kr)양식에 맞출것. </a><br/>-->
-    <input id="user_email" name="user_email" placeholder="유저이메일"><br/>
+    <input id="user_email" name="user_email" placeholder="유저이메일"><br/><br/>
 
     <button type="submit">가입</button>
 
@@ -40,6 +66,5 @@
 
 </body>
 
-<th:block th:replace="fragments/footer :: Footer"></th:block>
-
 </html>
+
