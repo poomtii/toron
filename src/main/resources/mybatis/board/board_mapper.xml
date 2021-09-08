@@ -34,6 +34,14 @@
             category_name
         FROM SYS_CATEGORY;
     </select>
+
+    <select id="getCategorys" resultType="com.example.toron.mvc.board.BoardVO">
+
+        CALL SYS_CATEGORY_BOARD(#{category_code});
+
+    </select>
+
+
 </mapper>
 
         <!--

@@ -32,59 +32,59 @@
 
         function fn_formVaild(){
             if(!user_name.val()) {
-                alert('이름 입력하세요')
+                alert('이름 입력하세요');
                 return false;
             }
             if(!user_nickname.val()) {
-                alert('닉네임을 입력하세요')
+                alert('닉네임을 입력하세요');
                 return false;
             }
             if(!user_id.val()) {
-                alert('아이디를 입력하세요')
+                alert('아이디를 입력하세요');
                 return false;
             }
             if(!fn_user_pwd.val()) {
-                alert('비밀번호를 입력하세요')
+                alert('비밀번호를 입력하세요');
                 return false;
             } else {
                 if(!pwd_result) {
                     console.log(pwd_result);
-                    alert('비밀번호를 확인해주세요.')
+                    alert('비밀번호를 확인해주세요.');
                     return false;
                 }
             }
             if(!user_email.val()) {
-                alert('이메일을 입력하세요')
+                alert('이메일을 입력하세요');
                 return false;
             }
             return true;
         }
 
         fn_user_pwd.on('keypress', function (e){
-            chk_reg.text('')
+            chk_reg.text('');
             if(!reg.test(fn_user_pwd.val())){
-                chk_reg.text('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.')
+                chk_reg.text('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
                 pwd_result = false;
             }
-            else if(fn_user_pwd.val().replace(blank,'') == ""){
-                chk_reg.text('공백!공백!공백!')
+            else if(fn_user_pwd == '' || fn_user_pwd == blank || fn_user_pwd == null){
+                chk_reg.empty();
                 pwd_result = false;
             }
             else{
-                chk_reg.text('사용 가능한 비밀번호입니다.')
+                chk_reg.text('사용 가능한 비밀번호입니다.');
             }
-        })
+        });
 
-        fn_user_pwd_chk.on('keypress', function (e){
+        fn_user_pwd_chk.on('keyup', function (e){
             chk_reg.text('')
             if(fn_user_pwd.val() != fn_user_pwd_chk.val()){
                 chk_reg.text('비밀번호가 일치하지않습니다.')
                 pwd_result = false;
             }else if(fn_user_pwd.val() == fn_user_pwd_chk.val()){
-                chk_reg.text('비밀번호가 일치합니다.')
+                chk_reg.text('비밀번호가 일치합니다.');
                 pwd_result = true;
             }
-        })
+        });
 
         $('#btn_save').on('click',function (e){
             frm = $('#form');
@@ -92,7 +92,7 @@
                 frm.prop('action','/user/register.do');
                 frm.submit();
             }
-        })
+        });
     });
 </script>
 <h1>유저 회원가입 페이지</h1>

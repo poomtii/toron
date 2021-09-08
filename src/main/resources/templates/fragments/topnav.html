@@ -21,8 +21,23 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/body/index}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/board/list.go}">게시판</a></li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/body/index}">Home</a></li>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" th:href="@{/board/list.go}" role="link" id="dropdownlink"
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
+
+                    <ul class="dropdown-menu" aria-labelby="dropdownlink">
+                        <li><a class="dropdown-item">정치</a></li>
+                        <li><a class="dropdown-item">유머</a></li>
+                        <li><a class="dropdown-item">자유</a></li>
+                        <li><a class="dropdown-item">생활</a></li>
+                        <li><a class="dropdown-item">공부</a></li>
+                        <li><a class="dropdown-item">업무</a></li>
+                        <li><a class="dropdown-item">취미</a></li>
+                    </ul>
+                </div>
+
                 <th:block th:if="${session.isEmpty()}">
                     <li class="nav-item"><a class="nav-link" th:href="@{/user/register.go}">회원가입</a></li>
                 </th:block>
