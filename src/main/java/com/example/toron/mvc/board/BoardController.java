@@ -25,6 +25,7 @@ import java.io.IOException;
 public class BoardController {
     @Autowired
     private BoardService bSvc;
+
     OutputJavaScriptModule oJm;
 
 
