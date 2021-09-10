@@ -13,12 +13,20 @@ import java.util.List;
 public interface BoardMapper {
     Integer write(BoardVO Bvo);
 
-    int boardCount();
     List<BoardVO> List();
 
     List<MenuVO> getMenu();
 
     BoardVO getInfoData(String boardNo);
 
+
+    List<MenuVO> getCategoryMenu();
+
+    /*
+    int boardCount();
+
     List<MenuVO> getCategoryName();
+    */
 }
+
+

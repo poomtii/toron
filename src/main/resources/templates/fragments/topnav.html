@@ -27,10 +27,13 @@
                     <a class="nav-link dropdown-toggle" role="link" id="dropdownlink"
                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
 
-                    <ul class="dropdown-menu" aria-labelby="dropdownlink" th:each="board : ${board_list}">
+                    <ul class="dropdown-menu" aria-labelby="dropdownlink" >
                         <li th:scope="col">
-                            <a class="dropdown-item" th:text="${board.category_code}" th:href="@{/board/list.go}">전체 게시글</a>
-                        </li>
+                            <a class="dropdown-item"  th:each="list :*{getCategoryMenu}"
+                               th:href="|@{/body/board/list}/*{list.category_code}|"
+                               th:text="*{list.category_name}">카테고리</a>
+
+                        <!--</li>
                         <li><a class="dropdown-item">정치</a></li>
                         <li><a class="dropdown-item">유머</a></li>
                         <li><a class="dropdown-item">자유</a></li>
@@ -38,7 +41,7 @@
                         <li><a class="dropdown-item">공부</a></li>
                         <li><a class="dropdown-item">업무</a></li>
                         <li><a class="dropdown-item">취미</a></li>
-                    </ul>
+                    </ul>-->
                 </div>
 
                 <th:block th:if="${session.isEmpty()}">

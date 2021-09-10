@@ -24,11 +24,9 @@ public class BoardService {
 
     public Integer write_board(BoardVO Bvo) throws IOException { return bMap.write(Bvo); }
 
-    public int board_count(){ return bMap.boardCount(); }
 
     public List<BoardVO> boardList(){ return bMap.List(); }
 
-    public List<BoardVO> catrgoryList(){ return bMap.List(); }
 
     public List<MenuVO> getMenu() {
         return bMap.getMenu();
@@ -38,5 +36,11 @@ public class BoardService {
         return bMap.getInfoData(boardNo);
     }
 
+    public List<MenuVO> getCategoryMenu(){ return bMap.getMenu(); }
+/*
+    public List<MenuVO> catrgoryList(){ return bMap.getMenu(); }
+
     public List<MenuVO> getCategoryName(){ return bMap.getCategoryName(); }
+
+    public int board_count(){ return bMap.boardCount(); }*/
 }
