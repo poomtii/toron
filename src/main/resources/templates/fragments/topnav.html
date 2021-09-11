@@ -29,9 +29,12 @@
 
                     <ul class="dropdown-menu" aria-labelby="dropdownlink" >
                         <li th:scope="col">
-                            <a class="dropdown-item"  th:each="list :*{getCategoryMenu}"
-                               th:href="|@{/body/board/list}/*{list.category_code}|"
-                               th:text="*{list.category_name}">카테고리</a>
+                            <ul class="dropdown-item" th:each="list :*{getCategoryMenu}">
+                                <a th:href="|@{/body/board/list}/*{list.category_code}|" th:text="*{list.category_name}">
+                               <!--th:href="|@{/body/board/list}/*{list.category_code}|"
+                               th:text="*{list.category_name}">카테고리-->
+                            </ul>
+
 
                         <!--</li>
                         <li><a class="dropdown-item">정치</a></li>

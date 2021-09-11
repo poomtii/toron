@@ -2,17 +2,22 @@ package com.example.toron;
 
 import com.example.toron.mvc.board.BoardService;
 import com.example.toron.mvc.board.MenuVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import sun.rmi.runtime.Log;
 
 import java.util.List;
 
 @Controller
 public class HomeController {
-    BoardService bSv;
+    //1. 아까 컨트롤러에서 bSv를 부르지만, 와어딩 된게 없기때문에 컨트롤러 혼자서 쉐복을 하고 있었음
+
+    @Autowired
+    private BoardService bSv;
 
 
     /*페이지를 이동하는 방식 두 가지
