@@ -30,7 +30,7 @@
                     <ul class="dropdown-menu" aria-labelby="dropdownlink" >
                         <li th:scope="col">
                             <ul class="dropdown-item" th:each="list :*{getCategoryMenu}">
-                                <a th:href="|@{/body/board/list}/*{list.category_code}|" th:text="*{list.category_name}">
+                                <a th:href="|@{/board/list}/*{list.category_code}|" th:text="*{list.category_name}">
                                <!--th:href="|@{/body/board/list}/*{list.category_code}|"
                                th:text="*{list.category_name}">카테고리-->
                             </ul>

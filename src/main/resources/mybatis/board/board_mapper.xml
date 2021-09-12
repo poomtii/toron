@@ -9,10 +9,13 @@
         CALL SYS_BOARD(#{board_title}, #{board_contents}, #{board_image}, #{user_nickname}, #{category_code});
     </select>
 
-    <select id="List" resultType="com.example.toron.mvc.board.BoardVO">
-        SELECT
-        *
-        FROM SYS_BOARD;
+    <select id="List" resultType="com.example.toron.mvc.board.BoardVO" parameterType="String">
+        <if test='id == "C00000"'>
+            SELECT * FROM SYS_BOARD;
+        </if>
+        <if test='id != "C00000"'>
+            SELECT * FROM SYS_BOARD WHERE category_code = #{id};
+        </if>
     </select>
 
     <select id="getMenu" resultType="com.example.toron.mvc.board.MenuVO">

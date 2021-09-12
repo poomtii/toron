@@ -13,7 +13,7 @@ import java.util.List;
 public interface BoardMapper {
     Integer write(BoardVO Bvo);
 
-    List<BoardVO> List();
+    List<BoardVO> List(String id);
 
     List<MenuVO> getMenu();
 
