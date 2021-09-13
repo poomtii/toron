@@ -1,13 +1,11 @@
 package com.example.toron.mvc.board;
 
-import com.example.toron.common.module.OutputJavaScriptModule;
 import com.example.toron.mapper.board.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,15 +30,21 @@ public class BoardService {
         return bMap.getMenu();
     }
 
-    public BoardVO bbsInfoData(String boardNo) {
+    public BoardVO bbsInfoData(String boardNo, String board_code) {
+        viewCnt(board_code);
         return bMap.getInfoData(boardNo);
     }
 
-    public List<MenuVO> getCategoryMenu(){ return bMap.getMenu(); }
+    public void viewCnt(String board_code){
+        bMap.viewCnt(board_code);
+    }
+
 /*
     public List<MenuVO> catrgoryList(){ return bMap.getMenu(); }
 
     public List<MenuVO> getCategoryName(){ return bMap.getCategoryName(); }
 
-    public int board_count(){ return bMap.boardCount(); }*/
+    public int board_count(){ return bMap.boardCount(); }
+    public List<MenuVO> getCategoryMenu(){ return bMap.getMenu(); }
+    */
 }

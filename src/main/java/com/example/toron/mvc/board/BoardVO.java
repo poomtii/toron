@@ -15,4 +15,5 @@ public class BoardVO {
     private String coment_count;
     private String category_code;
     private String category_name;
+    private int view_cnt;
 }

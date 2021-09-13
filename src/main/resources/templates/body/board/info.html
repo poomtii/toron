@@ -16,8 +16,43 @@
 
 
     <div class="container">
-        <p th:text="${bInfoData.board_title}"></p>
-        <p th:text="${bInfoData.board_contents}"></p>
+        <table class="board_detail">
+            <colgroup>
+                <col width="15%"/>
+                <col width="35%"/>
+                <col width="15%"/>
+                <col width="35%"/>
+            </colgroup>
+            <caption>게시글 상세내용</caption>
+            <tbody>
+                <tr>
+                    <th scope="row">글 번호</th>
+                    <td th:text="${bInfoData.board_no}"></td>
+                    <th scope="row">조회수</th>
+                    <td th:text="${bInfoData.view_cnt}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">작성자</th>
+                    <td th:text="${bInfoData.user_nickname}"></td>
+                    <th scope="row">작성일</th>
+                    <td th:text="${bInfoData.create_date}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">제목</th>
+                    <td colspan="3">
+                        <p th:text="${bInfoData.board_title}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">내용</th>
+                    <td colspan="4">
+                        <p th:text="${bInfoData.board_contents}"></p>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
 </body>

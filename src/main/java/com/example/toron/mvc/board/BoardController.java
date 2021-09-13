@@ -42,9 +42,9 @@ public String listPage(Model model,
     //별칭이 붙은 List는 View에서 또 다른 별칭을 부여한 후 데이터를 뽑아올 수 있음. th:each="View별칭 : ${AttributeName}"
 
     @GetMapping(value = "/info")
-    public ModelAndView getInfoData(@ModelAttribute("no") String boardNo) {
+    public ModelAndView getInfoData(@ModelAttribute("no") String boardNo, String board_code) {
         ModelAndView mav = new ModelAndView();
-        mav.addObject("bInfoData", bSvc.bbsInfoData(boardNo));
+        mav.addObject("bInfoData", bSvc.bbsInfoData(boardNo, board_code));
         mav.setViewName("body/board/info");
         return mav;
     }

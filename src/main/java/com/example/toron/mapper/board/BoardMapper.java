@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -17,14 +18,16 @@ public interface BoardMapper {
 
     List<MenuVO> getMenu();
 
-    BoardVO getInfoData(String boardNo);
+    BoardVO getInfoData(String no);
+
+    int viewCnt(String board_code);
 
 
-    List<MenuVO> getCategoryMenu();
+
 
     /*
     int boardCount();
-
+    List<MenuVO> getCategoryMenu();
     List<MenuVO> getCategoryName();
     */
 }
