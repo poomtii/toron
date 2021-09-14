@@ -30,12 +30,13 @@ public class BoardService {
         return bMap.getMenu();
     }
 
-    public BoardVO bbsInfoData(String boardNo, String board_code) {
-        viewCnt(board_code);
+    public BoardVO bbsInfoData(String boardNo) {
+        viewCnt(boardNo);
         return bMap.getInfoData(boardNo);
     }
 
     public void viewCnt(String board_code){
+        System.out.println("te"+board_code);
         bMap.viewCnt(board_code);
     }
 
