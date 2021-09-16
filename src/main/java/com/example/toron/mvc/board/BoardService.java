@@ -1,5 +1,6 @@
 package com.example.toron.mvc.board;
 
+import com.example.toron.common.module.BoardCriteriaModule;
 import com.example.toron.mapper.board.BoardMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +24,13 @@ public class BoardService {
 
     public Integer write_board(BoardVO Bvo) throws IOException { return bMap.write(Bvo); }
 
+    public int boardListCnt()throws Exception{
+        return bMap.boardListCnt();
+    }
+
+    public List<Map<String, Object>>boardList(BoardCriteriaModule cri)throws Exception{
+        return bMap.boardList(cri);
+    }
 
     public List<BoardVO> boardList(String id){ return bMap.List(id); }
 

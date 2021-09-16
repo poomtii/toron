@@ -17,7 +17,7 @@ public class HomeController {
     //1. 아까 컨트롤러에서 bSv를 부르지만, 와어딩 된게 없기때문에 컨트롤러 혼자서 쉐복을 하고 있었음
 
     @Autowired
-    private BoardService bSv;
+    private BoardService bSvc;
 
 
     /*페이지를 이동하는 방식 두 가지
@@ -32,7 +32,7 @@ public class HomeController {
     //이를 바탕으로 밸류에 /를 붙여야하는 이유 추론 할 수 있음
     public ModelAndView IndexA() {
         ModelAndView mav = new ModelAndView();
-        List<MenuVO> getMenu = bSv.getMenu();
+        List<MenuVO> getMenu = bSvc.getMenu();
         mav.addObject("getCategoryMenu", getMenu);
         mav.setViewName("/index");
         return mav;

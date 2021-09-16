@@ -1,5 +1,7 @@
 package com.example.toron.mvc.board;
 
+import com.example.toron.common.module.BoardCriteriaModule;
+import com.example.toron.common.module.BoardPagingModule;
 import com.example.toron.common.module.OutputJavaScriptModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,15 +24,21 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService bSvc;
+    private BoardPagingModule bPm;
+    private BoardCriteriaModule bCm;
 
     OutputJavaScriptModule oJm;
 
 @GetMapping("/list/{id}")
 public String listPage(Model model,
-                       @PathVariable(name = "id") String id){
+                       @PathVariable(name = "id") String id,
+                       BoardCriteriaModule cri)throws Exception{
+    int boardListCnt = bSvc.boardListCnt();
+
     List<MenuVO> getMenu = bSvc.getMenu();
     model.addAttribute("getCategoryMenu", getMenu);
     model.addAttribute("board_list", bSvc.boardList(id));
+    model.addAttribute("getCategoryMenu", getMenu);
     return "body/board/list";
 }
 
@@ -44,7 +51,9 @@ public String listPage(Model model,
     @GetMapping(value = "/info")
     public ModelAndView getInfoData(@ModelAttribute("no") String boardNo) {
         ModelAndView mav = new ModelAndView();
+        List<MenuVO> getMenu = bSvc.getMenu();
         mav.addObject("bInfoData", bSvc.bbsInfoData(boardNo));
+        mav.addObject("getCategoryMenu", getMenu);
         mav.setViewName("body/board/info");
         return mav;
     }
@@ -52,7 +61,9 @@ public String listPage(Model model,
     @GetMapping(value = "/writeFrom")
     public ModelAndView OpenWrite() {
         ModelAndView mav = new ModelAndView();
+        List<MenuVO> getMenu = bSvc.getMenu();
         mav.addObject("mnList",bSvc.getMenu());
+        mav.addObject("getCategoryMenu", getMenu);
         mav.setViewName("/body/board/write");
         return mav;
     }
