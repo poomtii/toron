@@ -52,19 +52,6 @@
         CALL SYS_BOARD_VIEW_CNT(#{board_code})
     </select>
 
-    <select id="boardList" resultType="hashmap" parameterType="hashmap">
-        <![CDATA[
-            SELECT *
-            FROM SYS_BOARD
-            ORDER BY board_no DESC
-            LIMIT #{pageStart}, #{perPageNum}]]>
-    </select>
-    
-    <select id="boardListCnt" resultType="int">
-        SELECT COUNT(*)
-        FROM SYS_BOARD
-    </select>
-
 </mapper>
 
         <!--

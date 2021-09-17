@@ -1,7 +1,5 @@
 package com.example.toron.mvc.board;
 
-import com.example.toron.common.module.BoardCriteriaModule;
-import com.example.toron.common.module.BoardPagingModule;
 import com.example.toron.common.module.OutputJavaScriptModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,17 +22,12 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardService bSvc;
-    private BoardPagingModule bPm;
-    private BoardCriteriaModule bCm;
 
     OutputJavaScriptModule oJm;
 
 @GetMapping("/list/{id}")
 public String listPage(Model model,
-                       @PathVariable(name = "id") String id,
-                       BoardCriteriaModule cri)throws Exception{
-    int boardListCnt = bSvc.boardListCnt();
-
+                       @PathVariable(name = "id") String id)throws Exception{
     List<MenuVO> getMenu = bSvc.getMenu();
     model.addAttribute("getCategoryMenu", getMenu);
     model.addAttribute("board_list", bSvc.boardList(id));
