@@ -68,11 +68,6 @@
                         <span th:text="${list.create_date}"></span>
                     </td>
                 </tr>
-
-                <nav style="text-align: center">
-                    <ul class="pagination" th:with="start=${T(Math).floor(board_list.board_code/10)*10+1},
-                last=(${start + 9 < board_list.totalPage ? start + 9 : board_list.totalPages})"
-                </nav>
             </tbody>
         </table>
         <div class="row">

@@ -24,7 +24,7 @@ public class BoardService {
     public Integer write_board(BoardVO Bvo) throws IOException { return bMap.write(Bvo); }
 
 
-    public List<BoardVO> boardList(String id){ return bMap.List(id); }
+    public List<BoardVO> boardList(String id, Criteria criteria){ return bMap.List(id, criteria); }
 
 
     public List<MenuVO> getMenu() {

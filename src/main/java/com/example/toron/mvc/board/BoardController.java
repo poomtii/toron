@@ -27,10 +27,10 @@ public class BoardController {
 
 @GetMapping("/list/{id}")
 public String listPage(Model model,
-                       @PathVariable(name = "id") String id)throws Exception{
+                       @PathVariable(name = "id") String id, Criteria criteria)throws Exception{
     List<MenuVO> getMenu = bSvc.getMenu();
     model.addAttribute("getCategoryMenu", getMenu);
-    model.addAttribute("board_list", bSvc.boardList(id));
+    model.addAttribute("board_list", bSvc.boardList(id, criteria));
     model.addAttribute("getCategoryMenu", getMenu);
     return "body/board/list";
 }
